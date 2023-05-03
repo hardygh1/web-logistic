@@ -5,7 +5,7 @@
 
             <div class="form-group">
                 {{ Form::label('identificacion') }}
-                {{ Form::text('identificacion', $cliente->identificacion, ['class' => 'form-control' . ($errors->has('identificacion') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese su Identificacion']) }}
+                {{ Form::text('identificacion', $cliente->identificacion, ['class' => 'form-control' . ($errors->has('identificacion') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese su Identificacion', 'required']) }}
                 {!! $errors->first('identificacion', '<div class="invalid-feedback">:message</div>') !!}
             </div>
 
@@ -14,13 +14,13 @@
         <div class="row">
             <div class="form-group col-md-6">
                 {{ Form::label('nombre') }}
-                {{ Form::text('nombre', $cliente->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
+                {{ Form::text('nombre', $cliente->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre', 'required']) }}
                 {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
             </div>
 
             <div class="form-group col-md-6">
                 {{ Form::label('apellido') }}
-                {{ Form::text('apellido', $cliente->apellido, ['class' => 'form-control' . ($errors->has('apellido') ? ' is-invalid' : ''), 'placeholder' => 'Apellido']) }}
+                {{ Form::text('apellido', $cliente->apellido, ['class' => 'form-control' . ($errors->has('apellido') ? ' is-invalid' : ''), 'placeholder' => 'Apellido', 'required']) }}
                 {!! $errors->first('apellido', '<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>
@@ -28,7 +28,7 @@
 
             <div class="form-group">
                 {{ Form::label('correo') }}
-                {{ Form::text('correo', $cliente->correo, ['class' => 'form-control' . ($errors->has('correo') ? ' is-invalid' : ''), 'placeholder' => 'Correo']) }}
+                {{ Form::text('correo', $cliente->correo, ['class' => 'form-control' . ($errors->has('correo') ? ' is-invalid' : ''), 'placeholder' => 'Correo', 'required']) }}
                 {!! $errors->first('correo', '<div class="invalid-feedback">:message</div>') !!}
             </div>
 
