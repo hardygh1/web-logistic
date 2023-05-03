@@ -306,18 +306,28 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+        ['header' => 'EASY BOX'],
+
+        [
+            'text'       => 'Gestión de Clientes',
+            'icon'      => 'fas fa-building',
+            'submenu'    => [
+                [
+                    'text' => 'Lista de Clientes',
+                    'url' => 'clientes'
+                ],
+                [
+                    'text' => 'Registrar Cliente',
+                    'url' => '/clientes/create'
+                ]
+            ]
+        ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
+
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -371,36 +381,6 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'Clientes',
-            'icon'      => 'fas fa-building',
-            'submenu'    => [
-                [
-                    'text' => 'Lista de Clientes',
-                    'url' => 'clientes'
-                ],
-                [
-                    'text' => 'Registrar Cliente',
-                    'url' => '/events/create'
-                ]
-            ]
         ],
         [
             'text'       => 'Eventos',
