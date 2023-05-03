@@ -50,5 +50,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/events/create', function(){
         return view('events-create');
     });
+
+    Route::resource('/clientes', \App\Http\Controllers\ClienteController::class);
 });
 

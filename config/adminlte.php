@@ -389,6 +389,20 @@ return [
             'url'        => '#',
         ],
         [
+            'text'       => 'Clientes',
+            'icon'      => 'fas fa-building',
+            'submenu'    => [
+                [
+                    'text' => 'Lista de Clientes',
+                    'url' => 'clientes'
+                ],
+                [
+                    'text' => 'Registrar Cliente',
+                    'url' => '/events/create'
+                ]
+            ]
+        ],
+        [
             'text'       => 'Eventos',
             'icon'      => 'fas fa-building',
             'submenu'    => [
