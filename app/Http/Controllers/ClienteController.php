@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Pais;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
+
 
 /**
  * Class ClienteController
@@ -43,7 +46,24 @@ class ClienteController extends Controller
     {
         $cliente = new Cliente();
 
-        return view('cliente.create', compact('cliente'));
+        $response = Http::get('https://ubicaciones.paginasweb.cr/provincias.json');
+        $provincias = $response->json();
+
+        $provincia_id = request('provincias', old('provincia_id'));
+
+        $responseprovincia = Http::get("https://ubicaciones.paginasweb.cr/provincia/1/cantones.json");
+            $cantones = $responseprovincia->json();
+
+
+        if ($provincia_id) {
+            $response = Http::get("https://ubicaciones.paginasweb.cr/provincia/1/cantones.json");
+            $cantones = $response->json();
+
+        } else {
+            $cantones = [];
+        }
+
+        return view('cliente.create', compact('cliente','provincias','cantones'));
     }
 
     /**

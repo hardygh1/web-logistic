@@ -52,12 +52,29 @@
         </div>
 
 
-        <div class="form-group col-md-4">
-            {{ Form::label('id_distrito') }}
-            {{ Form::text('id_distrito', $cliente->id_distrito, ['class' => 'form-control' . ($errors->has('id_distrito') ? ' is-invalid' : ''), 'placeholder' => 'Id Distrito']) }}
-            {!! $errors->first('id_distrito', '<div class="invalid-feedback">:message</div>') !!}
+        <div class="form-group">
+            <label for="provincia_id">Provincia</label>
+            <select name="provincia_id" id="provincia_id" class="form-control ubicacion-select">
+                <option value="">Seleccione una provincia</option>
+                @foreach ($provincias as $provinciaId => $provinciaNombre)
+                    <option value="{{ $provinciaId }}"{{ old('provincia_id') == $provinciaId ? ' selected' : '' }}>{{ $provinciaNombre }}</option>
+                @endforeach
+            </select>
         </div>
 
+        <div class="form-group">
+            <label for="canton_id">Cantón</label>
+            <select name="canton_id" id="canton_id" class="form-control ubicacion-select">
+                <option value="">Seleccione un cantón</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            {{ Form::label('Distrito') }}
+            {{ Form::text('id_distrito', $cliente->id_distrito, ['class' => 'form-control' . ($errors->has('id_distrito') ? ' is-invalid' : ''), 'placeholder' => 'Coloca Id de Distrito']) }}
+            {!! $errors->first('id_distrito', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
 
 
         <div class="row">
@@ -81,3 +98,4 @@
         <button type="submit" class="btn btn-primary">{{ __('Aceptar') }}</button>
     </div>
 </div>
+

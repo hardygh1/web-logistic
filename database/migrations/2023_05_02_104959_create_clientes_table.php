@@ -22,7 +22,7 @@ return new class extends Migration
         $table->string('nro_celular', 20)->nullable();
         $table->string('nro_casa', 20)->nullable();
         $table->string('nro_oficina', 20)->nullable();
-        $table->foreignId('id_distrito')->constrained('distritos');
+        $table->foreignId('id_distrito')->constrained('distritos')->nullable();
         $table->string('direccion_1', 100)->notNullable();
         $table->string('direccion_2', 100)->nullable();
         $table->timestamps();

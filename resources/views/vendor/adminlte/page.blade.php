@@ -12,7 +12,7 @@
 @section('body_data', $layoutHelper->makeBodyData())
 
 @section('body')
-    <div class="wrapper">
+    <div class="wrapper" style="background-color:#0F172B">
 
         {{-- Preloader Animation --}}
         @if($layoutHelper->isPreloaderEnabled())

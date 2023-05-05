@@ -52,5 +52,8 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::resource('/clientes', \App\Http\Controllers\ClienteController::class);
+
+    Route::resource('/paquetes', \App\Http\Controllers\PaqueteController::class);
+
 });
 

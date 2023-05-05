@@ -21,11 +21,6 @@
 
     <div class="row">
         <x-adminlte-select name="status" label="Estado" fgroup-class="col-md-6">
-            <x-slot name="prependSlot">
-                <div class="input-group-text bg-gradient-info">
-                    <i class="fas fa-car-side"></i>
-                </div>
-            </x-slot>
             <option>--Seleccione</option>
             <option>Borrador</option>
             <option>Publicado</option>
@@ -39,7 +34,7 @@
                     <i class="fas fa-building"></i>
                 </div>
             </x-slot>
-            <option/>
+
             <option>Concierto</option>
             <option>Fútbol</option>
             <option>Teatro</option>

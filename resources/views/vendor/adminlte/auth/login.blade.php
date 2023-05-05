@@ -18,6 +18,10 @@
     @php( $password_reset_url = $password_reset_url ? url($password_reset_url) : '' )
 @endif
 
+@section('css')
+    <link rel="stylesheet" href="/css/login-brackground.css">
+@stop
+
 @section('auth_header', __('adminlte::adminlte.login_message'))
 
 @section('auth_body')

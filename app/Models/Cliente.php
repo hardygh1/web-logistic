@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Cliente extends Model
 {
-    
+
     static $rules = [
 		'identificacion' => 'required',
 		'nombre' => 'required',
@@ -54,6 +54,6 @@ class Cliente extends Model
     {
         return $this->hasOne('App\Models\Distrito', 'id', 'id_distrito');
     }
-    
+
 
 }

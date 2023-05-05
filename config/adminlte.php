@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Web Logistic',
+    'title' => '',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Logistic</b>WEB',
+    
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -84,13 +84,13 @@ return [
     */
 
     'auth_logo' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'Auth Logo',
             'class' => '',
-            'width' => 50,
-            'height' => 50,
+            'width' => 200,
+            'height' => 70,
         ],
     ],
 
@@ -112,7 +112,7 @@ return [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
-            'width' => 60,
+            'width' => 200,
             'height' => 60,
         ],
     ],
@@ -168,7 +168,7 @@ return [
     */
 
     'classes_auth_card' => 'bg-gradient-dark',
-    'classes_auth_header' => '',
+    'classes_auth_header' => 'd-none',
     'classes_auth_body' => 'bg-gradient-dark',
     'classes_auth_footer' => 'text-center',
     'classes_auth_icon' => 'fa-fw text-light',
@@ -323,79 +323,20 @@ return [
             ]
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'new',
-            'url'  => 'new',
-            'icon' => 'fas fa-fw fa-code',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        [
-            'text'       => 'Eventos',
+            'text'       => 'Gestión de Paquetes',
             'icon'      => 'fas fa-building',
             'submenu'    => [
                 [
-                    'text' => 'Lista de Eventos',
-                    'url' => '/events'
+                    'text' => 'Lista de Paquetes',
+                    'url' => 'paquetes'
                 ],
                 [
-                    'text' => 'Registrar Evento',
-                    'url' => '/events/create'
+                    'text' => 'Registrar Paquetes',
+                    'url' => '/paquetes/create'
                 ]
             ]
         ],
+
     ],
 
     /*
