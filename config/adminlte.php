@@ -336,6 +336,20 @@ return [
                 ]
             ]
         ],
+        [
+            'text'       => 'Gestión de Manifiesto',
+            'icon'      => 'fas fa-building',
+            'submenu'    => [
+                [
+                    'text' => 'Lista de Manifiesto',
+                    'url' => 'paquetes'
+                ],
+                [
+                    'text' => 'Registrar Manifiesto',
+                    'url' => '/paquetes/create'
+                ]
+            ]
+        ],
 
     ],
 
