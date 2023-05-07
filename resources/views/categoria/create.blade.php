@@ -1,6 +1,3 @@
-
-
-
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -8,7 +5,7 @@
             @includeif('partials.errors')
 
             <input type="hidden" name="status" value="1">
-            @include('paquete.form')
+            @include('categoria.form')
 
 
         </div>
@@ -17,5 +14,3 @@
         <button type="submit" class="btn btn-block btn-success">{{ __('GUARDAR') }}</button>
     </div>
 </section>
-
-

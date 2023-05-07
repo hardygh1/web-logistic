@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Articulo;
 use App\Models\Cliente;
 use App\Models\Paquete;
 use App\Models\Proveedore;
+use App\Models\Transporte;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
+
 
 /**
  * Class PaqueteController
@@ -20,11 +25,24 @@ class PaqueteController extends Controller
      */
     public function index()
     {
+        $heads = [
+
+            ['label' => '#', 'width' => 2],
+            ['label' => 'Código', 'width' => 10],
+            ['label' => 'Cliente', 'width' => 30],
+            ['label' => 'Transporte', 'width' => 15],
+            ['label' => 'Proveedor', 'width' => 15],
+            ['label' => 'Acción', 'no-export' => true, 'width' => 25],
+        ];
+
         $paquetes = Paquete::paginate();
         $clientes = Cliente::all();
         $proveedores = Proveedore::all();
 
-        return view('paquete.index', compact('paquetes','clientes','proveedores'))
+        
+        $transportes = DB::table('transportes')->where('status', 1)->get();
+
+        return view('paquete.index', compact('heads', 'paquetes', 'clientes', 'proveedores', 'transportes'))
             ->with('i', (request()->input('page', 1) - 1) * $paquetes->perPage());
     }
 
@@ -38,7 +56,7 @@ class PaqueteController extends Controller
         $paquete = new Paquete();
         $clientes = Cliente::all();
         $proveedores = Proveedore::all();
-        return view('paquete.create', compact('paquete','clientes','proveedores'));
+        return view('paquete.create', compact('paquete', 'clientes', 'proveedores'));
     }
 
     /**
@@ -49,17 +67,18 @@ class PaqueteController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = request()->validate(Paquete::$rules);
-
+        $message = 'success';
+        $text = 'Se guardó exitosamente';
         $paquete = Paquete::create($request->all());
-
-        $paquete = new Paquete();
-        $paquete->fill($validatedData);
-        $paquete->save();
-
-
+        // if ($paquete->status) {
+        //     $message = 'success';
+        //     $text = 'Se guardó exitosamente';
+        // } else {
+        //     $message = 'danger';
+        //     $text = 'No se pudo guardar. Revise su conexión';
+        // }
         return redirect()->route('paquetes.index')
-            ->with('success', 'Paquete created successfully.');
+            ->with($message, $text);
     }
 
     /**
@@ -84,8 +103,49 @@ class PaqueteController extends Controller
     public function edit($id)
     {
         $paquete = Paquete::find($id);
+        $clientes = Cliente::all();
+        $proveedores = Proveedore::all();
 
-        return view('paquete.edit', compact('paquete'));
+        $transportes = DB::table('transportes')->where('status', 1)->get();
+
+        $heads = [
+
+            ['label' => '#', 'width' => 2],
+            ['label' => 'Categoría', 'width' => 8],
+            ['label' => 'Descripción', 'width' => 25],
+            ['label' => 'Peso', 'width' => 5],
+            ['label' => 'Largo x Ancho x Alto', 'width' => 25],
+            ['label' => 'Volumen Kilo', 'width' => 20],
+            ['label' => 'Peso Cúb.', 'width' => 20],
+            ['label' => 'Acción', 'no-export' => true, 'width' => 25],
+        ];
+
+        $articulos =  DB::select('
+            SELECT 
+                a.*,
+                c.name,
+                tp.abreviatura,
+                tm.abreviatura
+
+            FROM
+                articulos as a
+
+            INNER JOIN
+                categorias as c ON c.id = a.id_codigo_categoria
+            INNER JOIN
+                tipo_peso as tp ON tp.id = a.id_tipo_peso
+            INNER JOIN
+                tipo_medida as tm ON tm.id = a.id_tipo_medida
+
+            WHERE
+                a.status = 1 and a.id_codigo_paquete = '.$id.'
+            ');
+        
+        $categorias = DB::table('categorias')->where('status', 1)->get();
+        $tipo_peso =  DB::table('tipo_peso')->where('status', 1)->get();
+        $tipo_medida = DB::table('tipo_medida')->where('status', 1)->get();
+
+        return view('paquete.edit', compact('paquete', 'clientes', 'proveedores', 'transportes', 'heads', 'articulos', 'categorias', 'tipo_peso', 'tipo_medida'));
     }
 
     /**
@@ -102,7 +162,7 @@ class PaqueteController extends Controller
         $paquete->update($request->all());
 
         return redirect()->route('paquetes.index')
-            ->with('success', 'Paquete updated successfully');
+            ->with('success', 'Paquete actualizado exitosamente');
     }
 
     /**

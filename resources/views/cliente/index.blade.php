@@ -62,7 +62,7 @@
                                     @endforeach
                             </x-adminlte-datatable>
                     </div>
-                </div>saasdas
+                </div>
                 {!! $clientes->links() !!}
             </div>
         </div>

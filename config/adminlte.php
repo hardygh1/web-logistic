@@ -331,17 +331,17 @@ return [
                     'url' => 'paquetes'
                 ],
                 [
-                    'text' => 'Registrar Paquetes',
-                    'url' => '/paquetes/create'
-                ],
-                [
                     'text' => 'Proveedores',
                     'url' => 'proveedores'
                 ],
                 [
                     'text' => 'Registro Proveedores',
                     'url' => '/proveedores/create'
-                ]
+                ],
+                [
+                    'text' => 'Categorías',
+                    'url' => 'categorias'
+                ],
             ]
         ],
         [
@@ -350,11 +350,11 @@ return [
             'submenu'    => [
                 [
                     'text' => 'Lista de Manifiesto',
-                    'url' => 'paquetes'
+                    'url' => 'manifiesto'
                 ],
                 [
                     'text' => 'Registrar Manifiesto',
-                    'url' => '/paquetes/create'
+                    'url' => '/manifiesto/create'
                 ]
             ]
         ],

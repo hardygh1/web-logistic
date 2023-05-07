@@ -1,41 +1,39 @@
-<div class="box box-info padding-1">
-    <div class="box-body">
+<div class="form-group row">
+    <label class="col-sm-6" for="name"> {{ Form::label('Cliente') }}
+        <select class="form-control form-control-sm" name="id_codigo_cliente" id="id_codigo_cliente">
+            @foreach($clientes as $cliente)
+            @if (isset($paquete->id_codigo_cliente))
+            <option {{ (($paquete->id_codigo_cliente == $cliente->id) ) ? 'selected' : null }} value="{{$cliente->id}}">{{$cliente->id}} - {{$cliente->nombre}} {{$cliente->apellido}}</option>
+            @else
+            <option value="{{ $cliente->id }}">{{$cliente->id}} - {{$cliente->nombre}} {{$cliente->apellido}}</option>
+            @endif
+            @endforeach
+        </select>
+    </label>
 
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="cliente_id">Cliente:</label>
-                <select name="cliente_id" id="cliente_id" class="form-control">
-                    @foreach($clientes as $cliente)
-                        <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="form-group col-md-6">
-                <label for="id_proveedor">Proveedor:</label>
-                <select name="id_proveedor" id="id_proveedor" class="form-control">
-                    @foreach($proveedores as $proveedore)
-                        <option value="{{ $proveedore->id }}">{{ $proveedore->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-
-
-
-        </div>
-
-        <div class="row">
-            <div class="form-group form-group col-md-6">
-                {{ Form::label('tipo_transporte') }}
-                {{ Form::text('tipo_transporte', $paquete->tipo_transporte, ['class' => 'form-control' . ($errors->has('tipo_transporte') ? ' is-invalid' : ''), 'placeholder' => 'Tipo Transporte']) }}
-                {!! $errors->first('tipo_transporte', '<div class="invalid-feedback">:message</div>') !!}
-            </div>
-        </div>
+    <label class="col-sm-3" for="name"> {{ Form::label('Transporte') }}
+        <select class="form-control form-control-sm" name="id_tipo_transporte" id="id_tipo_transporte">
+            @foreach($transportes as $transporte)
+            @if (isset($paquete->id_tipo_transporte))
+            <option {{ (($paquete->id_tipo_transporte == $transporte->id) ) ? 'selected' : null }} value="{{$transporte->id}}">{{$transporte->name}}</option>
+            @else
+            <option value="{{ $transporte->id }}">{{ $transporte->name }}</option>
+            @endif
+            @endforeach
+        </select>
+    </label>
+    <label class="col-sm-3" for="name"> {{ Form::label('Proveedor') }}
+        <select class="form-control form-control-sm" name="id_proveedor" id="id_proveedor">
+            @foreach($proveedores as $proveedor)
+            @if (isset($paquete->id_proveedor))
+            <option {{ (($paquete->id_proveedor == $proveedor->id) ) ? 'selected' : null }} value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
+            @else
+            <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
+            @endif
+            @endforeach
+        </select>
+    </label>
 
 
-    </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Agregar') }}</button>
-    </div>
+
 </div>

@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function(){
 
     Route::resource('/proveedores', \App\Http\Controllers\ProveedoreController::class);
 
+    Route::resource('/categorias', \App\Http\Controllers\CategoriaController::class);
 
+    Route::resource('/articulos', \App\Http\Controllers\ArticuloController::class);
 });
 
