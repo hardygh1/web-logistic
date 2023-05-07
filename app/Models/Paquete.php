@@ -24,7 +24,7 @@ class Paquete extends Model
     static $rules = [
 		'id_codigo_cliente' => 'required|exists:clientes,id',
 		'tipo_transporte' => 'required',
-		'tipo_proveedor' => 'required',
+		'id_proveedor' => 'required',
     ];
 
     protected $perPage = 20;
@@ -34,7 +34,7 @@ class Paquete extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_codigo_cliente','tipo_transporte','tipo_proveedor'];
+    protected $fillable = ['id_codigo_cliente','tipo_transporte','id_proveedor'];
 
 
     /**
@@ -43,6 +43,10 @@ class Paquete extends Model
     public function cliente()
     {
         return $this->hasOne('App\Models\Cliente', 'id', 'id_codigo_cliente');
+    }
+
+    public function proveedores(){
+        return $this->hasOne('App\Models\Proveedore', 'id', 'id_proveedor');
     }
 
 

@@ -33,7 +33,6 @@ class Cliente extends Model
 		'nombre' => 'required',
 		'apellido' => 'required',
 		'correo' => 'required',
-		'id_distrito' => 'required',
 		'direccion_1' => 'required',
     ];
 
@@ -44,16 +43,8 @@ class Cliente extends Model
      *
      * @var array
      */
-    protected $fillable = ['identificacion','nombre','apellido','correo','nro_celular','nro_casa','nro_oficina','id_distrito','direccion_1','direccion_2'];
+    protected $fillable = ['identificacion','nombre','apellido','correo','nro_celular','nro_casa','nro_oficina','distrito','direccion_1','direccion_2'];
 
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function distrito()
-    {
-        return $this->hasOne('App\Models\Distrito', 'id', 'id_distrito');
-    }
 
 
 }

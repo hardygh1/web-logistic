@@ -55,5 +55,8 @@ Route::middleware('auth')->group(function(){
 
     Route::resource('/paquetes', \App\Http\Controllers\PaqueteController::class);
 
+    Route::resource('/proveedores', \App\Http\Controllers\ProveedoreController::class);
+
+
 });
 

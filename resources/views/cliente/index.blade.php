@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Logistic WEB')
+@section('title', 'Easy Box')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Gestión de Clientes</h1>

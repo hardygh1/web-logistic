@@ -63,7 +63,7 @@ return [
     |
     */
 
-    
+
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -235,8 +235,8 @@ return [
     'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
-    'right_sidebar_slide' => true,
-    'right_sidebar_push' => true,
+    'right_sidebar_slide' => false,
+    'right_sidebar_push' => false,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
@@ -333,6 +333,14 @@ return [
                 [
                     'text' => 'Registrar Paquetes',
                     'url' => '/paquetes/create'
+                ],
+                [
+                    'text' => 'Proveedores',
+                    'url' => 'proveedores'
+                ],
+                [
+                    'text' => 'Registro Proveedores',
+                    'url' => '/proveedores/create'
                 ]
             ]
         ],

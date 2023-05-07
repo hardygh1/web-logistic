@@ -1,9 +1,7 @@
 @extends('adminlte::page')
 
-@section('title', 'Easy Box')
-
 @section('template_title')
-    {{ __('Update') }} Editar Cliente
+    {{ __('Update') }} Proveedore
 @endsection
 
 @section('content')
@@ -15,14 +13,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Cliente</span>
+                        <span class="card-title">{{ __('Update') }} Proveedore</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('clientes.update', $cliente->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('proveedores.update', $proveedore->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('cliente.form')
+                            @include('proveedore.form')
 
                         </form>
                     </div>

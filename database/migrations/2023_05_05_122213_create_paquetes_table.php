@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_codigo_cliente');
             $table->string('tipo_transporte');
-            $table->string('tipo_proveedor');
             $table->timestamps();
+            $table->foreignId('id_proveedor')
+                    ->references('id')
+                    ->on('proveedores')
+                    ->cascadeOnUpdate();
 
             $table->foreign('id_codigo_cliente')->references('id')->on('clientes')->onDelete('cascade');
         });
+
+
     }
 
     /**

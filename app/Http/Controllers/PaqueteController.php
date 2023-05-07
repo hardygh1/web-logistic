@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Paquete;
+use App\Models\Proveedore;
 use Illuminate\Http\Request;
 
 /**
@@ -21,8 +22,9 @@ class PaqueteController extends Controller
     {
         $paquetes = Paquete::paginate();
         $clientes = Cliente::all();
+        $proveedores = Proveedore::all();
 
-        return view('paquete.index', compact('paquetes','clientes'))
+        return view('paquete.index', compact('paquetes','clientes','proveedores'))
             ->with('i', (request()->input('page', 1) - 1) * $paquetes->perPage());
     }
 
@@ -35,7 +37,8 @@ class PaqueteController extends Controller
     {
         $paquete = new Paquete();
         $clientes = Cliente::all();
-        return view('paquete.create', compact('paquete','clientes'));
+        $proveedores = Proveedore::all();
+        return view('paquete.create', compact('paquete','clientes','proveedores'));
     }
 
     /**
