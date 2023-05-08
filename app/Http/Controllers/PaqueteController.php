@@ -42,6 +42,7 @@ class PaqueteController extends Controller
         
         $transportes = DB::table('transportes')->where('status', 1)->get();
 
+
         return view('paquete.index', compact('heads', 'paquetes', 'clientes', 'proveedores', 'transportes'))
             ->with('i', (request()->input('page', 1) - 1) * $paquetes->perPage());
     }
@@ -91,7 +92,7 @@ class PaqueteController extends Controller
     {
         $paquete = Paquete::find($id);
 
-        return view('paquete.show', compact('paquete'));
+        //return view('paquete.show', compact('paquete'));
     }
 
     /**
@@ -174,6 +175,11 @@ class PaqueteController extends Controller
     {
         $paquete = Paquete::find($id)->delete();
 
+        return redirect()->route('paquetes.index')
+            ->with('success', 'Paquete deleted successfully');
+    }
+
+    public function generar(Request $request){
         return redirect()->route('paquetes.index')
             ->with('success', 'Paquete deleted successfully');
     }

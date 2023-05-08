@@ -23,17 +23,17 @@
 <div class="form-group row">
     <div class="col-sm-3">
         {{ Form::label('largo') }}
-        {{ Form::number('largo', $paquete->largo, ['class' => 'form-control' . ($errors->has('largo') ? ' is-invalid' : ''), 'placeholder' => 'largo']) }}
+        {{ Form::number('largo', $paquete->largo, ['class' => 'form-control' . ($errors->has('largo') ? ' is-invalid' : ''),'step' => '0.0001','placeholder' => 'largo']) }}
         {!! $errors->first('largo', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="col-sm-3">
         {{ Form::label('ancho') }}
-        {{ Form::number('ancho', $paquete->ancho, ['class' => 'form-control' . ($errors->has('ancho') ? ' is-invalid' : ''), 'placeholder' => 'ancho']) }}
+        {{ Form::number('ancho', $paquete->ancho, ['class' => 'form-control' . ($errors->has('ancho') ? ' is-invalid' : ''),'step' => '0.0001','placeholder' => 'ancho']) }}
         {!! $errors->first('ancho', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="col-sm-3">
         {{ Form::label('alto') }}
-        {{ Form::number('alto', $paquete->alto, ['class' => 'form-control' . ($errors->has('alto') ? ' is-invalid' : ''), 'placeholder' => 'alto']) }}
+        {{ Form::number('alto', $paquete->alto, ['class' => 'form-control' . ($errors->has('alto') ? ' is-invalid' : ''),'step' => '0.0001','placeholder' => 'alto']) }}
         {!! $errors->first('alto', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <label class="col-sm-3" for="id_tipo_medida"> {{ Form::label('tipo medida') }}
@@ -53,11 +53,11 @@
     </div>
     <div class="col-sm-2">
         {{ Form::label('Cantidad') }}
-        {{ Form::number('cantidad', $paquete->cantidad, ['class' => 'form-control' . ($errors->has('cantidad') ? ' is-invalid' : ''), 'placeholder' => 'cantidad']) }}
+        {{ Form::number('cantidad', $paquete->cantidad, ['class' => 'form-control' . ($errors->has('cantidad') ? ' is-invalid' : ''),'step' => '0.0001', 'placeholder' => 'cantidad']) }}
         {!! $errors->first('cantidad', '<div class="invalid-feedback">:message</div>') !!}
     </div>
     <div class="col-sm-2">
         {{ Form::label('Precio') }}
-        {{ Form::number('precio',$paquete->precio, ['class' => 'form-control' . ($errors->has('precio') ? ' is-invalid' : ''), 'placeholder' => 'precio']) }}
+        {{ Form::number('precio',$paquete->precio, ['class' => 'form-control' . ($errors->has('precio') ? ' is-invalid' : ''),'step' => '0.0001', 'placeholder' => 'precio']) }}
         {!! $errors->first('precio', '<div class="invalid-feedback">:message</div>') !!}
     </div>

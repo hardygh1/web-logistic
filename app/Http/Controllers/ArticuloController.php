@@ -21,7 +21,7 @@ class ArticuloController extends Controller
     public function index()
     {
         $articulos = Articulo::paginate();
-       
+
         return view('articulo.index', compact('articulos'))
             ->with('i', (request()->input('page', 1) - 1) * $articulos->perPage());
     }
@@ -77,8 +77,29 @@ class ArticuloController extends Controller
         if ($validator->fails()) {
             $message = 'warning';
             $text = 'Debe de ingresar todos los campos requeridos';
-            
         } else {
+            // if($request->id_tipo_peso==1){
+            //     $request['peso'] = $request['peso']/2.205; 
+            //     $request['id_tipo_peso'] = 2;
+            // }
+            $v = 1;
+            $p = 1;
+            switch ($request->id_tipo_medida) {
+                case 1: //pulgadas
+                    $v = 366;
+                    $p=1728;
+                    break;
+                case 2: // centìmetros
+                    $v = 6000;
+                    $p=28320;
+                    break;
+            }
+            //HALLAMOS VOLUMEN KILO => kg
+            $request['volumen_kilo'] = (($request->largo*$request->ancho*$request->alto))/$v;
+
+            //HALLAMOS PESO VOLUMÉTRICO => cuft
+            $request['pies_cubicos'] = (($request->largo*$request->ancho*$request->alto))/$p;
+
             $articulo = Articulo::create($request->all());
             if ($articulo->status) {
                 $message = 'success';
@@ -88,7 +109,7 @@ class ArticuloController extends Controller
                 $text = 'No se pudo guardar. Revise su conexión';
             }
         }
-        
+
         return redirect()->back()->with($message, $text);
     }
 
