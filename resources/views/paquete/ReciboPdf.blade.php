@@ -111,8 +111,8 @@
             <tr>
                 <td><?php echo $total_piezas; ?></td>
                 <td><?php echo $total_pesos; ?> {{$datos->tp_abreviatura}}</td>
-                <td><?php echo $total_pv; ?> {{$datos->tp_abreviatura}} Kg</td>
-                <td><?php echo $total_volumen; ?> {{$datos->tp_abreviatura}} cuft</td>
+                <td><?php echo $total_pv; ?> Kg</td>
+                <td><?php echo $total_volumen; ?> cuft</td>
             </tr>
         </table>
 
