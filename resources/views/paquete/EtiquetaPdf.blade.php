@@ -182,7 +182,8 @@ $medidaTicket = 300;
         <br>
 
         <div>
-            <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($datos->id, 'C39')}}" alt="barcode" />
+
+            <img src="data:image/png;base64,{{$barra}}" alt="barcode" />
         </div>
         <br>
         <h1 style="text-transform: uppercase;">{{$datos->t_abreviatura}}</h1>

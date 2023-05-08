@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PDF;
 use Illuminate\Support\Facades\DB;
+use \Milon\Barcode\DNS1D;
 
 class ReportesController extends Controller
 {
@@ -53,7 +54,10 @@ class ReportesController extends Controller
                ');
          switch ($datos[1]) {
             case '1':
-               $pdf = \PDF::loadView('paquete.EtiquetaPdf', compact(['data']))->setPaper('b7');
+               $d = new DNS1D();
+               $d->setStorPath(__DIR__ . '/cache/');
+               $barra = $d->getBarcodePNG($datos[0], 'C39');
+               $pdf = \PDF::loadView('paquete.EtiquetaPdf', compact(['data','barra']))->setPaper('b7');
                return $pdf->download("Etiqueta-" . $datos[0] . ".pdf");
                break;
             case '2':
