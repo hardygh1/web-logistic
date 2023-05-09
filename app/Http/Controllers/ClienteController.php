@@ -33,7 +33,7 @@ class ClienteController extends Controller
             'Acciones'
         ];
 
-        return view('cliente.index', compact('clientes','heads'))
+        return view('cliente.index', compact('clientes', 'heads'))
             ->with('i', (request()->input('page', 1) - 1) * $clientes->perPage());
     }
 
@@ -46,24 +46,40 @@ class ClienteController extends Controller
     {
         $cliente = new Cliente();
 
-        $response = Http::get('https://ubicaciones.paginasweb.cr/provincias.json');
-        $provincias = $response->json();
 
-        $provincia_id = request('provincias', old('provincia_id'));
-
-        $responseprovincia = Http::get("https://ubicaciones.paginasweb.cr/provincia/1/cantones.json");
-            $cantones = $responseprovincia->json();
-
-
-        if ($provincia_id) {
-            $response = Http::get("https://ubicaciones.paginasweb.cr/provincia/1/cantones.json");
-            $cantones = $response->json();
-
-        } else {
-            $cantones = [];
+        $response = file_get_contents('https://ubicaciones.paginasweb.cr/provincias.json');
+        $provincias = json_decode($response);
+        $data = [];
+        foreach ($provincias as $index => $prov) {
+            $data[$index] = array("id"=>$index,"cod_postal" => $index * 10000, "nombre" => $prov);
+            //array_push($data,$index);
+            // $data[$index] = $prov
+            // $data[$index] = [];
+            //$data[$index]->id = $index;
         }
+        // foreach ($provincias as $index => $prov) {
+        //     //$data[$index]=$index;
 
-        return view('cliente.create', compact('cliente','provincias','cantones'));
+        //     array_push($data, [ "id" => $index, "cod_postal" => $index * 10000, "nombre" => $prov] );
+        //     //array_push($array, array("id" => $index, "cod_postal" => $index * 10000, "nombre" => $prov));
+        // }
+        //$data=array($data);
+        $provincias =  json_decode(json_encode($data, JSON_FORCE_OBJECT));
+        //$provincias = request('provincias', old('provincia_id'));
+
+        // $responseprovincia = file_get_contents("https://ubicaciones.paginasweb.cr/provincia/1/cantones.json");
+        // $cantones = json_decode($responseprovincia);
+
+
+        // if ($provincia_id) {
+        //     $response = file_get_contents("https://ubicaciones.paginasweb.cr/provincia/1/cantones.json");
+        //     $cantones = json_decode($response);
+
+        // } else {
+        $cantones = [];
+        // }
+
+        return view('cliente.create', compact('cliente', 'provincias', 'cantones'));
     }
 
     /**
@@ -73,7 +89,8 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        
         request()->validate(Cliente::$rules);
 
         $cliente = Cliente::create($request->all());
@@ -104,8 +121,26 @@ class ClienteController extends Controller
     public function edit($id)
     {
         $cliente = Cliente::find($id);
+        $response = file_get_contents('https://ubicaciones.paginasweb.cr/provincias.json');
+        $provincias = json_decode($response);
+        $data = [];
+        foreach ($provincias as $index => $prov) {
+            $data[$index] = array("id"=>$index,"cod_postal" => $index * 10000, "nombre" => $prov);
+            //array_push($data,$index);
+            // $data[$index] = $prov
+            // $data[$index] = [];
+            //$data[$index]->id = $index;
+        }
+        // foreach ($provincias as $index => $prov) {
+        //     //$data[$index]=$index;
 
-        return view('cliente.edit', compact('cliente'));
+        //     array_push($data, [ "id" => $index, "cod_postal" => $index * 10000, "nombre" => $prov] );
+        //     //array_push($array, array("id" => $index, "cod_postal" => $index * 10000, "nombre" => $prov));
+        // }
+        //$data=array($data);
+        $provincias =  json_decode(json_encode($data, JSON_FORCE_OBJECT));
+        $cantones = [];
+        return view('cliente.edit', compact('cliente','provincias','cantones'));
     }
 
     /**

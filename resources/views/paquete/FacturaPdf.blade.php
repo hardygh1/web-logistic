@@ -5,7 +5,7 @@
 
     <style>
         * {
-            font-size: 12px;
+            font-size: 11px;
             font-family: 'DejaVu Sans', serif;
 
         }
@@ -22,86 +22,116 @@
             font-size: 13px;
 
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        tr {
+            border-top: 1pt solid black;
+            border-bottom: 1pt solid black;
+            border-left: 1pt solid black;
+            border-right: 1pt solid black;
+        }
     </style>
 </head>
 
 <body>
-    <div style="text-align: right;">
-        <p>AMERICARGO EPXRESS INC</p>
-        <p>2131 NW 79th Avenue</p>
-        <p>Miami, FL, 33122, USA</p>
-        <p>USA: +1 305-436-1408</p>
-        <p>https://www.americargoexpress.com/</p>
-        <p>Recibo </p>
-        <p><?php echo date("Y-m-d"); ?></p>
+    <?php
+    $total_piezas = count($data);
+    $total_pesos = 0;
+    $total_pv = 0;
+    $total_volumen = 0;
+    $total_precio = 0;
+
+    foreach ($data as $index => $datos) {
+        $total_pesos = $total_pesos + $datos->peso;
+        $total_pv =  $total_pv  + $datos->volumen_kilo;
+        $total_volumen = $total_volumen + $datos->pies_cubicos;
+        $total_precio = $total_precio + $datos->precio;
+    }
+    ?>
+
+    <div style="text-align: left; line-height: 3pt;">
         <br>
-    </div>
-    <div style="border: 1px black solid;">
-        <table>
-            <tr>
-                <td>Embarcador:</td>
-                <td>Consignatario:</td>
-            </tr>
-            <tr>
-                <td>SHIPPING DEPARTMENT (1373) </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>1800 WORDEIDE</td>
-                <td>N-A</td>
-            </tr>
-            <tr>
-                <td>MIAMI, FL, USA </td>
-                <td>SAN JOSE, CR</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>PHONE: N/A</td>
-            </tr>
-        </table>
-    </div>
-    <div>
-        <table>
-            <tr>
-                <td style="text-align: left;">Agente: EASY BOX (277)</td>
-                <td style="text-align: right;">Destination City: SAN JOSE</td>
-            </tr>
-            <tr>
-                <td style="text-align: left;">Transporte: UPS </td>
-                <td style="text-align: right;">Destination Country: COSTA RICA</td>
-            </tr>
-            <tr>
-                <td style="text-align: left;"></td>
-                <td style="text-align: right;">Valor Declarado: $100.00</td>
-            </tr>
+        <br>
+        <center style="color: orange;">Final Details for Order #{{$datos->id}}</center>
+        <p><b>Order Placed:</b> <?php echo date("Y-m-d"); ?></p>
+        <p><b>Order Total:</b>${{$total_precio}}</p>
 
-        </table>
     </div>
-    <br>
-    <table style="border-collapse: collapse;">
+
+    <table width="100%">
         <tr>
-            <td>Piezas</td>
-            <td>Total Peso</td>
-            <td>Total Peso/Volúmen</td>
-            <td>Total Volúmen</td>
+            <td colspan="2" style="text-align: center;">Shipped On <?php echo date("Y-m-d"); ?></td>
+        </tr>
+        <tr>
+            <td width="65%">
+                <b>Items Ordered</b><br>
+                @foreach($data as $index=>$datos)
+                {{$datos->cantidad}} of: {{$datos->name}} - {{$datos->description}}<br>
+                @endforeach
+            </td>
+            <td width="35%" style="text-align: right;">
+                <br>
+                @foreach($data as $index=>$datos)
+                ${{$datos->precio}}<br>
+                @endforeach
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Shipping Address:<br>
+                {{$datos->nombre}} {{$datos->apellido}}<br>
+                2131 NW 79th Ave<br>
+                MIAMI, FLORIDA, 33122-1615<br>
+                United States<br><br>
+                <b>Shipping Speed:</b><br>
+                Standard Shipping
+            </td>
+            <td style="text-align: right;">Item(s) Subtotal: ${{$total_precio}}<br>
+                Shipping & Handling: $0.00<br>
+                <label style="text-align: right;">-----</label><br>
+                Total before tax: ${{$total_precio}}<br>
+                Sales tax: $0.00<br>
+                <label style="text-align: right;">-----</label><br>
+                Total for this Shipment: ${{$total_precio}}<br>
+                <label style="text-align: right;">-----</label><br>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">Payment Information</td>
+        </tr>
+        <tr>
+            <td>
+                Payment Method:<br>
+                AMEX | Last digits: 3744 <br>
+                <br>
+                <b>Billing Address</b><br>
+                {{$datos->nombre}} {{$datos->apellido}}<br><br>
+                2131 NW 79th Ave<br>
+                MIAMI, FLORIDA, 33122-1615<br>
+                United States<br>
+            </td>
+            <td style="text-align: right;">Item(s) Subtotal: ${{$total_precio}}<br>
+                Shipping & Handling: $0.00<br>
+                <label style="text-align: right;">-----</label><br>
+                Total before tax: ${{$total_precio}}<br>
+                Estimated tax to be collected: $0.00<br>
+                <label style="text-align: right;">-----</label><br>
+                Grand Total: ${{$total_precio}}<br>
+
+            </td>
+        </tr>
+        <tr>
+            <td>Credit Card transactions</td>
+            <td style="text-align: right;">AMEX ending in 3744: <?php echo date("Y-m-d"); ?>: ${{$total_precio}}</td>
         </tr>
     </table>
 
+
     <br>
-    <table style="border-collapse: collapse;">
-        <tr>
-            <td>Largo</td>
-            <td>Ancho</td>
-            <td>Alto</td>
-            <td>Units</td>
-            <td>Package</td>
-            <td>Peso</td>
-            <td>Descripción del Contenido</td>
-        </tr>
-    </table>
-
-
- 
 
 </body>
 

@@ -24,16 +24,16 @@
                     <b>¿Qué desea imprimir?</b>
                     <br><br>
                 </div>
-                <div class="col-md-6" align="center">
+                <div class="col-md-4" align="center">
                     <a class="btn btn-block btn-sm btn-primary" href="{{ route('reportes.show',$paquete->id).',1' }}"><i class="fa fa-sm fa-file"></i> {{ __('Etiqueta') }}</a>
                 </div>
-                <div class="col-md-6" align="center">
+                <div class="col-md-4" align="center">
                     <a class="btn btn-block btn-sm btn-warning" href="{{ route('reportes.show',$paquete->id).',2' }}"><i class="fa fa-sm fa-bookmark"></i> {{ __('Recibo') }}</a>
 
                 </div>
-                <!-- <div class="col-md-4" align="center">
+                <div class="col-md-4" align="center">
                     <a class="btn btn-block btn-sm btn-success" href="{{ route('reportes.show',$paquete->id).',3' }}"><i class="fa fa-sm fa-file-pdf"></i> {{ __('Factura') }}</a>
-                </div> -->
+                </div>
 
 
 

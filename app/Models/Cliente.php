@@ -15,12 +15,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property $nro_celular
  * @property $nro_casa
  * @property $nro_oficina
- * @property $id_distrito
  * @property $direccion_1
  * @property $direccion_2
  * @property $created_at
  * @property $updated_at
- *
+ * 
+ * @property $id_provincia
+ * @property $id_canton
+ * @property $id_distrito
+ * @property $codigo_postal
  * @property Distrito $distrito
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -43,7 +46,7 @@ class Cliente extends Model
      *
      * @var array
      */
-    protected $fillable = ['identificacion','nombre','apellido','correo','nro_celular','nro_casa','nro_oficina','distrito','direccion_1','direccion_2'];
+    protected $fillable = ['identificacion','nombre','apellido','correo','nro_celular','nro_casa','nro_oficina','direccion_1','direccion_2','id_provincia','id_canton','id_distrito','codigo_postal'];
 
 
 

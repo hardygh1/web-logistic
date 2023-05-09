@@ -40,6 +40,7 @@ class ReportesController extends Controller
                               ,cl.identificacion
                               ,cl.nombre
                               ,cl.apellido
+                              ,cl.direccion_1
                               
                            FROM articulos as a
                               INNER JOIN categorias as c ON c.id = a.id_codigo_categoria
@@ -65,7 +66,7 @@ class ReportesController extends Controller
                return $pdf->download("Recibo-" . $datos[0] . ".pdf");
                break;
             case '3':
-               $pdf = \PDF::loadView('paquete.FacturaPdf')->setPaper('A4');
+               $pdf = \PDF::loadView('paquete.FacturaPdf', compact(['data']))->setPaper('A4');
                return $pdf->download("Factura-" . $datos[0] . ".pdf");
                break;
          }
