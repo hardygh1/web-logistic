@@ -28,9 +28,14 @@
             border-collapse: collapse;
         }
 
-        tr {
+        .tabletr {
             border-top: 1pt solid black;
             border-bottom: 1pt solid black;
+            border-left: 1pt solid black;
+            border-right: 1pt solid black;
+        }
+
+        tr {
             border-left: 1pt solid black;
             border-right: 1pt solid black;
         }
@@ -55,32 +60,37 @@
 
     <div style="text-align: left; line-height: 3pt;">
         <br>
+        @if($proveedor=='AMAZON')
+        <img style="display: block;position:relative;margin:20px auto" src="https://1000marcas.net/wp-content/uploads/2019/11/Amazon-logo.png" alt="" width="110" />
+        @else
         <br>
+        @endif
+        
         <center style="color: orange;">Final Details for Order #{{$datos->id}}</center>
-        <p><b>Order Placed:</b> <?php echo date("Y-m-d"); ?></p>
+        <p><b>Order Placed:</b> {{$fecha}}</p>
         <p><b>Order Total:</b>${{$total_precio}}</p>
 
     </div>
 
     <table width="100%">
-        <tr>
-            <td colspan="2" style="text-align: center;">Shipped On <?php echo date("Y-m-d"); ?></td>
+        <tr class="tabletr">
+            <td colspan="2" style="text-align: center;">Shipped On {{$fecha}}</td>
         </tr>
-        <tr>
-            <td width="65%">
+        <tr class="tabletr">
+            <td width="60%">
                 <b>Items Ordered</b><br>
                 @foreach($data as $index=>$datos)
                 {{$datos->cantidad}} of: {{$datos->name}} - {{$datos->description}}<br>
                 @endforeach
             </td>
-            <td width="35%" style="text-align: right;">
+            <td width="40%" style="text-align: right;">
                 <br>
                 @foreach($data as $index=>$datos)
                 ${{$datos->precio}}<br>
                 @endforeach
             </td>
         </tr>
-        <tr>
+        <tr class="tabletr">
             <td>
                 Shipping Address:<br>
                 {{$datos->nombre}} {{$datos->apellido}}<br>
@@ -90,7 +100,8 @@
                 <b>Shipping Speed:</b><br>
                 Standard Shipping
             </td>
-            <td style="text-align: right;">Item(s) Subtotal: ${{$total_precio}}<br>
+            <td style="text-align: right;">
+                Item(s) Subtotal: ${{$total_precio}}<br>
                 Shipping & Handling: $0.00<br>
                 <label style="text-align: right;">-----</label><br>
                 Total before tax: ${{$total_precio}}<br>
@@ -100,36 +111,58 @@
                 <label style="text-align: right;">-----</label><br>
             </td>
         </tr>
-        <tr>
+        <tr class="tabletr">
             <td colspan="2" style="text-align: center;">Payment Information</td>
         </tr>
         <tr>
-            <td>
-                Payment Method:<br>
-                AMEX | Last digits: 3744 <br>
-                <br>
-                <b>Billing Address</b><br>
-                {{$datos->nombre}} {{$datos->apellido}}<br><br>
-                2131 NW 79th Ave<br>
-                MIAMI, FLORIDA, 33122-1615<br>
-                United States<br>
+            <td>Payment Method:
             </td>
-            <td style="text-align: right;">Item(s) Subtotal: ${{$total_precio}}<br>
-                Shipping & Handling: $0.00<br>
-                <label style="text-align: right;">-----</label><br>
-                Total before tax: ${{$total_precio}}<br>
-                Estimated tax to be collected: $0.00<br>
-                <label style="text-align: right;">-----</label><br>
-                Grand Total: ${{$total_precio}}<br>
-
-            </td>
+            <td style="text-align: right;">
+                Item(s) Subtotal: ${{$total_precio}}</td>
         </tr>
         <tr>
+            <td>
+                AMEX | Last digits: 3744</td>
+            <td style="text-align: right;"> Shipping & Handling: $0.00</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align: right;"> <label style="text-align: right;">-----</label></td>
+        </tr>
+        <tr>
+            <td>
+                <b>Billing Address</b>
+            </td>
+            <td style="text-align: right;"> Total before tax: ${{$total_precio}}</td>
+        </tr>
+        <tr>
+            <td>{{$datos->nombre}} {{$datos->apellido}}</td>
+            <td style="text-align: right;"> Estimated tax to be collected: $0.00</td>
+        </tr>
+        <tr>
+            <td>2131 NW 79th Ave</td>
+            <td style="text-align: right;"> <label style="text-align: right;">-----</label></td>
+        </tr>
+        <tr>
+            <td>MIAMI, FLORIDA, 33122-1615</td>
+            <td style="text-align: right;"> <label style="text-align: right;">-----</label></td>
+        </tr>
+        <tr>
+            <td>United States</td>
+            <td style="text-align: right;"> Grand Total: ${{$total_precio}}</td>
+        </tr>
+        <tr class="tabletr">
             <td>Credit Card transactions</td>
-            <td style="text-align: right;">AMEX ending in 3744: <?php echo date("Y-m-d"); ?>: ${{$total_precio}}</td>
+            <td style="text-align: right;">AMEX ending in 3744: {{$fecha}}: ${{$total_precio}}</td>
         </tr>
     </table>
-
+    <div style="text-align: center;font-size: xx-small; color:cornflowerblue">
+        To view the status of your order, return to Order Summary<br>
+        Conditions of Use | Privacy Notice
+        @if($proveedor=='AMAZON')
+        ©1996-<?php echo date("Y"); ?>, Amazon.com, Inc. or its afliates
+        @endif
+    </div>
 
     <br>
 

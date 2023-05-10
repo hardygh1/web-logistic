@@ -41,6 +41,8 @@ class ReportesController extends Controller
                               ,cl.nombre
                               ,cl.apellido
                               ,cl.direccion_1
+                              ,UPPER(pr.nombre) AS proveedor
+                              ,p.created_at as fecha
                               
                            FROM articulos as a
                               INNER JOIN categorias as c ON c.id = a.id_codigo_categoria
@@ -49,6 +51,7 @@ class ReportesController extends Controller
                               INNER JOIN paquetes as p ON p.id = a.id_codigo_paquete
                               INNER JOIN transportes as t ON t.id = p.id_tipo_transporte
                               INNER JOIN clientes as cl ON cl.id = p.id_codigo_cliente
+                              INNER JOIN proveedores as pr ON pr.id = p.id_proveedor
                               
                               WHERE p.id = ' . $datos[0] . '
                
@@ -58,7 +61,7 @@ class ReportesController extends Controller
                $d = new DNS1D();
                $d->setStorPath(__DIR__ . '/cache/');
                $barra = $d->getBarcodePNG($datos[0], 'C39');
-               $pdf = \PDF::loadView('paquete.EtiquetaPdf', compact(['data','barra']))->setPaper('b7');
+               $pdf = \PDF::loadView('paquete.EtiquetaPdf', compact(['data', 'barra']))->setPaper('b7');
                return $pdf->download("Etiqueta-" . $datos[0] . ".pdf");
                break;
             case '2':
@@ -66,7 +69,9 @@ class ReportesController extends Controller
                return $pdf->download("Recibo-" . $datos[0] . ".pdf");
                break;
             case '3':
-               $pdf = \PDF::loadView('paquete.FacturaPdf', compact(['data']))->setPaper('A4');
+               $proveedor = count($data) > 0 ? $data[0]->proveedor : '';
+               $fecha = count($data) > 0 ? $data[0]->fecha : '';
+               $pdf = \PDF::loadView('paquete.FacturaPdf', compact(['data','proveedor','fecha']))->setPaper('A4');
                return $pdf->download("Factura-" . $datos[0] . ".pdf");
                break;
          }
