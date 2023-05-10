@@ -87,26 +87,42 @@ class ArticuloController extends Controller
             switch ($request->id_tipo_medida) {
                 case 1: //pulgadas
                     $v = 366;
-                    $p=1728;
+                    $p = 1728;
                     break;
                 case 2: // centìmetros
                     $v = 6000;
-                    $p=28320;
+                    $p = 28320;
                     break;
             }
             //HALLAMOS VOLUMEN KILO => kg
-            $request['volumen_kilo'] = (($request->largo*$request->ancho*$request->alto))/$v;
+            $request['volumen_kilo'] = (($request->largo * $request->ancho * $request->alto)) / $v;
 
             //HALLAMOS PESO VOLUMÉTRICO => cuft
-            $request['pies_cubicos'] = (($request->largo*$request->ancho*$request->alto))/$p;
+            $request['pies_cubicos'] = (($request->largo * $request->ancho * $request->alto)) / $p;
 
-            $articulo = Articulo::create($request->all());
-            if ($articulo->status) {
-                $message = 'success';
-                $text = 'Se guardó exitosamente';
+            if ($request['id'] > 0) {
+                //$this->update($request, $request->id);
+                $articulo = Articulo::find($request['id'])->fill($request->all())->save();
+                //$articulo = Articulo::update($request->all());
+                // $message ='success';
+                // $text=$articulo;
+                if ($articulo=='1') {
+                    $message = 'warning';
+                    $text = 'Se actualizó exitosamente';
+                } else {
+                    $message = 'danger';
+                    $text = 'No se pudo actualizar. Revise su conexión';
+                }
             } else {
-                $message = 'danger';
-                $text = 'No se pudo guardar. Revise su conexión';
+
+                $articulo = Articulo::create($request->all());
+                if ($articulo->status) {
+                    $message = 'success';
+                    $text = 'Se guardó exitosamente';
+                } else {
+                    $message = 'danger';
+                    $text = 'No se pudo guardar. Revise su conexión';
+                }
             }
         }
 
@@ -153,7 +169,7 @@ class ArticuloController extends Controller
         $articulo->update($request->all());
 
         return redirect()->route('articulos.index')
-            ->with('success', 'Articulo updated successfully');
+            ->with('success', 'Artículo actualizado exitosamente');
     }
 
     /**

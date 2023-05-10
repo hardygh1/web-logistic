@@ -1,5 +1,3 @@
-
-
 <div class="modal fade" role="dialog" tabindex="-1" id="modalCreateArticulo">
     <div class="modal-dialog  modal-lg" role="document">
         <div class="modal-content">
@@ -16,7 +14,7 @@
 
                             <form method="POST" action="{{ route('articulos.store') }}" role="form" enctype="multipart/form-data">
                                 @csrf
-
+                                <input type="hidden" class="form-control" id="id" name="id">
                                 @include('articulo.create')
 
                             </form>
@@ -74,12 +72,14 @@
                         <td> {{$articulo->description}}<br><small><b>Cantidad:</b> {{$articulo->cantidad}} / <b>Precio:</b> {{$articulo->precio}} </small></td>
                         <td> {{$articulo->peso}} {{$articulo->abreviatura}}</td>
                         <td> {{$articulo->largo}} {{$articulo->abreviatura}} x {{$articulo->ancho}} {{$articulo->abreviatura}} x {{$articulo->alto}} {{$articulo->abreviatura}}</td>
-                       
+
                         <td> {{$articulo->volumen_kilo}}</td>
                         <td> {{$articulo->pies_cubicos}}</td>
                         <td>
                             <form action="{{ route('articulos.destroy',$articulo->id) }}" method="POST">
                                 @csrf
+                                <a class="btn btn-sm btn-warning" id="modalCreateArticulo" data-toggle="modal" data-target="#modalCreateArticulo" onclick="Update('{{ $articulo->id }}','{{$articulo->id_codigo_categoria}}','{{$articulo->peso}}','{{$articulo->id_tipo_peso}}','{{$articulo->largo}}','{{$articulo->ancho}}','{{$articulo->alto}}','{{$articulo->id_tipo_medida}}','{{$articulo->description}}','{{$articulo->cantidad}}','{{$articulo->precio}}');"><i class="fa fa-fw fa-edit"></i></a>
+
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i></button>
                             </form>
@@ -89,6 +89,25 @@
                 </x-adminlte-datatable>
             </div>
         </div>
-        
+
     </div>
 </div>
+
+@section('js')
+<script type="text/javascript">
+    Update = function(id, id_codigo_categoria, peso,id_tipo_peso,largo,ancho,alto,id_tipo_medida,description,cantidad,precio) {
+        $('#id').val(id);
+        $('#id_codigo_categoria').val(id_codigo_categoria);
+        $('#peso').val(peso);
+        $('#id_tipo_peso').val(id_tipo_peso);
+        $('#largo').val(largo);
+        $('#ancho').val(ancho);
+        $('#alto').val(alto);
+        $('#id_tipo_medida').val(id_tipo_medida);
+        $('#description').val(description);
+        $('#cantidad').val(cantidad);
+        $('#precio').val(precio);
+       
+    };
+</script>
+@stop

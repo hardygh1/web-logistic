@@ -14,7 +14,7 @@
     <label class="col-sm-2" for="id_tipo_peso"> {{ Form::label('tipo peso') }}
         <select class="form-control" name="id_tipo_peso" id="id_tipo_peso">
             @foreach($tipo_peso as $peso)
-            <option value="{{ $peso->id }}">{{ $peso->name }}</option>
+            <option value="{{ $peso->id }}">{{ $peso->abreviatura }}</option>
             @endforeach
         </select>
     </label>
@@ -39,7 +39,7 @@
     <label class="col-sm-3" for="id_tipo_medida"> {{ Form::label('tipo medida') }}
         <select class="form-control" name="id_tipo_medida" id="id_tipo_medida">
             @foreach($tipo_medida as $medida)
-            <option value="{{ $medida->id }}">{{ $medida->name }}</option>
+            <option value="{{ $medida->id }}">{{ $medida->abreviatura }}</option>
             @endforeach
         </select>
     </label>
@@ -48,16 +48,19 @@
 <div class="form-group row">
     <div class="col-sm-8">
         {{ Form::label('Descripción') }}
-        {{ Form::textarea('description', $paquete->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''),'rows'=>'3', 'placeholder' => 'description']) }}
-        {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
+        <textarea class="form-control" rows="3" name="description" id="description" placeholder="Ingresa una descripción" ></textarea>
+        <!-- {{ Form::textarea('description', $paquete->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''),'rows'=>'3', 'placeholder' => 'description']) }}
+        {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!} -->
     </div>
     <div class="col-sm-2">
         {{ Form::label('Cantidad') }}
-        {{ Form::number('cantidad', $paquete->cantidad, ['class' => 'form-control' . ($errors->has('cantidad') ? ' is-invalid' : ''),'step' => '0.0001', 'placeholder' => 'cantidad']) }}
-        {!! $errors->first('cantidad', '<div class="invalid-feedback">:message</div>') !!}
+        <input type="number" step="0.0001" class="form-control" name="cantidad" id="cantidad"/>
+        <!-- {{ Form::number('cantidad', $paquete->cantidad, ['class' => 'form-control' . ($errors->has('cantidad') ? ' is-invalid' : ''),'step' => '0.0001', 'placeholder' => 'cantidad']) }}
+        {!! $errors->first('cantidad', '<div class="invalid-feedback">:message</div>') !!} -->
     </div>
     <div class="col-sm-2">
         {{ Form::label('Precio') }}
-        {{ Form::number('precio',$paquete->precio, ['class' => 'form-control' . ($errors->has('precio') ? ' is-invalid' : ''),'step' => '0.0001', 'placeholder' => 'precio']) }}
-        {!! $errors->first('precio', '<div class="invalid-feedback">:message</div>') !!}
+        <input type="number" step="0.0001" class="form-control" name="precio" id="precio"/>
+        <!-- {{ Form::number('precio',$paquete->precio, ['class' => 'form-control' . ($errors->has('precio') ? ' is-invalid' : ''),'step' => '0.0001', 'placeholder' => 'precio']) }}
+        {!! $errors->first('precio', '<div class="invalid-feedback">:message</div>') !!} -->
     </div>
