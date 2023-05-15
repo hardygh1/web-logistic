@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $status
  * @property $created_at
  * @property $updated_at
- *
+ * @property $tracking
  * @property Categoria $categoria
  * @property Paquete $paquete
  * @property TipoMedida $tipoMedida
@@ -54,7 +54,7 @@ class Articulo extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_codigo_paquete','id_codigo_categoria','peso','id_tipo_peso','largo','ancho','alto','volumen_kilo','pies_cubicos','id_tipo_medida','cantidad','description','precio','status'];
+    protected $fillable = ['id_codigo_paquete','id_codigo_categoria','peso','id_tipo_peso','largo','ancho','alto','volumen_kilo','pies_cubicos','id_tipo_medida','cantidad','description','precio','status','tracking'];
 
 
     /**

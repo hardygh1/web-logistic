@@ -24,8 +24,8 @@ class CategoriaController extends Controller
         $heads = [
 
             ['label' => '#', 'width' => 2],
-            ['label' => 'Nombre', 'width' => 20],
-            ['label' => 'Descripción', 'width' => 50],
+            ['label' => 'Nombre', 'width' => 70],
+            // ['label' => 'Descripción', 'width' => 50],
             ['label' => 'Estado', 'width' => 5],
             ['label' => 'Acción', 'no-export' => true, 'width' => 25],
         ];
@@ -65,11 +65,11 @@ class CategoriaController extends Controller
             $request->all(),
             [
                 'name' => 'required',
-                'description' => 'required',
+                // 'description' => 'required',
             ],
             [
                 'name.required' => 'El atributo nombre se requiere.',
-                'description.required' => 'El atributo descripción se requiere.',
+                // 'description.required' => 'El atributo descripción se requiere.',
             ]
         );
         if ($validator->fails()) {

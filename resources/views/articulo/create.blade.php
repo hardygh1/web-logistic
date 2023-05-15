@@ -11,8 +11,9 @@
 
 
         </div>
-        <div class="box-footer mt20">
-            <button type="submit" class="btn btn-block btn-success">{{ __('GUARDAR') }}</button>
+        <div class="box-footer mt20" >
+            <!-- <button type="button" onclick="showDiv();" class="btn btn-danger">{{ __('CANCELAR') }}</button> -->
+            <button id="text-element" type="submit" class="btn btn-block btn-success">{{ __('GUARDAR') }}</button>
         </div>
     </div>
 

@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<section class="content container-fluid">
+<section class="content container-fluid" id="PaqueteIndex">
     <div class="">
         <div class="col-md-12">
 

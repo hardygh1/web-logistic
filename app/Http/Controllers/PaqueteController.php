@@ -112,13 +112,14 @@ class PaqueteController extends Controller
         $heads = [
 
             ['label' => '#', 'width' => 2],
+            ['label' => 'Tracking', 'width' => 8],
             ['label' => 'Categoría', 'width' => 8],
-            ['label' => 'Descripción', 'width' => 25],
+            ['label' => 'Descripción', 'width' => 15],
             ['label' => 'Peso', 'width' => 5],
-            ['label' => 'Largo x Ancho x Alto', 'width' => 25],
+            ['label' => 'Largo x Ancho x Alto', 'width' => 30],
             ['label' => 'Volumen Kilo', 'width' => 20],
             ['label' => 'Peso Cúb.', 'width' => 20],
-            ['label' => 'Acción', 'no-export' => true, 'width' => 25],
+            ['label' => 'Acción', 'no-export' => true, 'width' => 20],
         ];
 
         $articulos =  DB::select('

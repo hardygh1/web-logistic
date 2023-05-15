@@ -11,35 +11,38 @@
 @section('content')
 
 
-<div class="modal fade" role="dialog" tabindex="-1" id="modalCreatePaquete">
-    <div class="modal-dialog  modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-success">
-                <h5>&nbsp;AGREGAR PAQUETE</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            </div>
+<div class="card" style="display:none" id="modalCreatePaquete">
+    <div class="card-header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
 
-            <div class="modal-body">
-                <section class="content container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
+            <span id="card_title" class="m-0 text-uppercase">
+                <b>
+                    AGREGAR PAQUETE
+                </b>
+            </span>
 
-                            @includeif('partials.errors')
-
-                            <form method="POST" action="{{ route('paquetes.store') }}" role="form" enctype="multipart/form-data">
-                                @csrf
-
-                                @include('paquete.create')
-
-                            </form>
-
-
-                        </div>
-                    </div>
-                </section>
-            </div>
 
         </div>
     </div>
+    <div class="card-body">
+        <section class="content container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    @includeif('partials.errors')
+
+                    <form method="POST" action="{{ route('paquetes.store') }}" role="form" enctype="multipart/form-data">
+                        @csrf
+
+                        @include('paquete.create')
+
+                    </form>
+
+
+                </div>
+            </div>
+        </section>
+    </div>
+
 </div>
 
 
@@ -56,7 +59,7 @@
                         </span>
 
                         <div class="float-right">
-                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" id="modalCreatePaquete" data-target="#modalCreatePaquete"><i class="fa fa-sm fa-plus"></i>&nbsp; {{ __('Agregar Paquete') }}</button>
+                            <button type="button" onclick="showDiv()" class="btn btn-sm btn-success" id="modalCreatePaquete"><i class="fa fa-sm fa-plus"></i>&nbsp; {{ __('Agregar Paquete') }}</button>
 
                         </div>
                     </div>
@@ -88,8 +91,8 @@
                             <td>{{$paquete->id_codigo_cliente }} - {{$paquete->cliente->nombre}} {{$paquete->cliente->apellido}} </td>
                             <td>{{$paquete->transportes->name}}</td>
                             <td>{{$paquete->proveedores->nombre}}</td>
-                            
-                           
+
+
                             <td>
                                 <form action="{{ route('paquetes.destroy',$paquete->id) }}" method="POST">
                                     <a class="btn btn-sm btn-warning" href="{{ route('paquetes.edit',$paquete->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
@@ -108,4 +111,22 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    
+    function showDiv() {
+      
+        var form = document.getElementById("modalCreatePaquete");
+       
+        if (form.style.display === "none") {
+           
+            form.style.display = "block";
+           
+        } else {
+            form.style.display = "none";
+        }
+    }
+   
+</script>
+
 @stop

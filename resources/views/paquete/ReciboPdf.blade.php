@@ -51,7 +51,7 @@
         <p>Miami, FL, 33122, USA</p>
         <p>USA: +1 305-436-1408</p>
         <p>https://www.americargoexpress.com/</p>
-        <p>Recibo {{$datos->id}} </p>
+        <p>Recibo {{$cabecera->id}} </p>
         <p><?php echo date("Y-m-d"); ?></p>
         <br>
     </div>
@@ -63,7 +63,7 @@
             </tr>
             <tr>
                 <td>SHIPPING DEPARTMENT (1373) </td>
-                <td>{{$datos->nombre}} {{$datos->apellido}} [EB-SJO-{{$datos->cliente_id}}]</td>
+                <td>{{$cabecera->nombre}} {{$cabecera->apellido}} [EB-SJO-{{$cabecera->cliente_id}}]</td>
             </tr>
             <tr>
                 <td>1800 WORDEIDE</td>
@@ -110,7 +110,15 @@
 
             <tr>
                 <td><?php echo $total_piezas; ?></td>
-                <td><?php echo $total_pesos; ?> {{$datos->tp_abreviatura}}</td>
+                <td><?php echo $total_pesos; ?> 
+                    <?php
+                        if(isset($datos)){
+                           echo $datos->tp_abreviatura;
+                        }
+                    ?>
+                 
+
+                </td>
                 <td><?php echo $total_pv; ?> Kg</td>
                 <td><?php echo $total_volumen; ?> cuft</td>
             </tr>

@@ -60,6 +60,7 @@ class ArticuloController extends Controller
                 'id_tipo_medida' => 'required',
                 'status' => 'required',
                 'description' => 'required',
+                'tracking' => 'required'
             ],
             [
                 'id_codigo_paquete.required' => 'El id Paquete se requiere.',
@@ -72,6 +73,7 @@ class ArticuloController extends Controller
                 'id_tipo_medida.required' => 'El id Tipo Medida  se requiere.',
                 'status.required' => 'El atributo status se requiere.',
                 'description.required' => 'El atributo descripción se requiere.',
+                'tracking.required' => 'El atributo descripción se requiere.',
             ]
         );
         if ($validator->fails()) {

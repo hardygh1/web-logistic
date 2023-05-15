@@ -5,11 +5,11 @@
     </label>
 
 
-    <div class="col-sm-12">
+    <!-- <div class="col-sm-12">
         {{ Form::label('Descripción') }}
         {{ Form::textarea('description', $categoria->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'rows' => 2, 'placeholder' => 'Ingrese una descripción']) }}
         {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
 
-    </div>
+    </div> -->
 
 </div>

@@ -1,4 +1,9 @@
 <div class="form-group row">
+    <div class="col-sm-5">
+        {{ Form::label('tracking') }}
+        {{ Form::number('tracking', $paquete->tracking, ['class' => 'form-control' . ($errors->has('tracking') ? ' is-invalid' : ''),'step' => '0.0001','placeholder' => 'tracking']) }}
+        {!! $errors->first('tracking', '<div class="invalid-feedback">:message</div>') !!}
+    </div>
     <label class="col-sm-8" for="id_codigo_categoria"> {{ Form::label('categoría') }}
         <select class="form-control" name="id_codigo_categoria" id="id_codigo_categoria">
             @foreach($categorias as $categoria)
@@ -48,19 +53,19 @@
 <div class="form-group row">
     <div class="col-sm-8">
         {{ Form::label('Descripción') }}
-        <textarea class="form-control" rows="3" name="description" id="description" placeholder="Ingresa una descripción" ></textarea>
+        <textarea class="form-control" rows="3" name="description" id="description" placeholder="Ingresa una descripción"></textarea>
         <!-- {{ Form::textarea('description', $paquete->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''),'rows'=>'3', 'placeholder' => 'description']) }}
         {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!} -->
     </div>
     <div class="col-sm-2">
         {{ Form::label('Cantidad') }}
-        <input type="number" step="0.0001" class="form-control" name="cantidad" id="cantidad"/>
+        <input type="number" step="0.0001" class="form-control" name="cantidad" id="cantidad" />
         <!-- {{ Form::number('cantidad', $paquete->cantidad, ['class' => 'form-control' . ($errors->has('cantidad') ? ' is-invalid' : ''),'step' => '0.0001', 'placeholder' => 'cantidad']) }}
         {!! $errors->first('cantidad', '<div class="invalid-feedback">:message</div>') !!} -->
     </div>
     <div class="col-sm-2">
         {{ Form::label('Precio') }}
-        <input type="number" step="0.0001" class="form-control" name="precio" id="precio"/>
+        <input type="number" step="0.0001" class="form-control" name="precio" id="precio" />
         <!-- {{ Form::number('precio',$paquete->precio, ['class' => 'form-control' . ($errors->has('precio') ? ' is-invalid' : ''),'step' => '0.0001', 'placeholder' => 'precio']) }}
         {!! $errors->first('precio', '<div class="invalid-feedback">:message</div>') !!} -->
     </div>

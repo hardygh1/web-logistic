@@ -1,6 +1,3 @@
-
-
-
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -14,8 +11,8 @@
         </div>
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-block btn-success">{{ __('GUARDAR') }}</button>
+        <button type="button" onclick="showDiv()" class="btn btn-danger">{{ __('CERRAR') }}</button>
+
+        <button type="submit" class="btn btn-success">{{ __('GUARDAR') }}</button>
     </div>
 </section>
-
-

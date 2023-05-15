@@ -11,33 +11,36 @@
 @section('content')
 
 
-<div class="modal fade" role="dialog" tabindex="-1" id="modalCreateCategoria">
-    <div class="modal-dialog  modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-success">
-                <h5>&nbsp;AGREGAR CATEGORÍA</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+<div class="details" style="display:none">
+    <div class="card">
+        <div class="card-header">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+
+                <span id="card_title" class="m-0 text-uppercase">
+                    <b> {{ __('AGREGAR CATEGORÍA') }}</b>
+                </span>
+
+
             </div>
+        </div>
+        <div class="card-body">
+            <section class="content container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
 
-            <div class="modal-body">
-                <section class="content container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
+                        @includeif('partials.errors')
 
-                            @includeif('partials.errors')
+                        <form method="POST" action="{{ route('categorias.store') }}" role="form" enctype="multipart/form-data">
+                            @csrf
 
-                            <form method="POST" action="{{ route('categorias.store') }}" role="form" enctype="multipart/form-data">
-                                @csrf
+                            @include('categoria.create')
 
-                                @include('categoria.create')
-
-                            </form>
+                        </form>
 
 
-                        </div>
                     </div>
-                </section>
-            </div>
-
+                </div>
+            </section>
         </div>
     </div>
 </div>
@@ -56,7 +59,8 @@
                         </span>
 
                         <div class="float-right">
-                            <button type="button" class="btn btn-sm btn-success" data-toggle="modal" id="modalCreateCategoria" data-target="#modalCreateCategoria"><i class="fa fa-sm fa-plus"></i>&nbsp; {{ __('Agregar Categoría') }}</button>
+                            <!-- <button type="button" class="btn btn-sm btn-success" data-toggle="modal" id="modalCreateCategoria" data-target="#modalCreateCategoria"><i class="fa fa-sm fa-plus"></i>&nbsp; {{ __('Agregar Categoría') }}</button> -->
+                            <button type="button" onclick="$('.details').slideToggle(function(){$('#modalCreateCategoria').html($('.details').is(':visible')?'Cerrar':'Agregar Categoría');});" class="btn btn-sm btn-success" id="modalCreateCategoria"><i class="fa fa-sm fa-plus"></i>&nbsp; {{ __('Agregar Categoría') }}</button>
 
                         </div>
                     </div>
@@ -85,7 +89,7 @@
 
                             <td>{{++$i}}</td>
                             <td>{{ $categoria->name }}</td>
-                            <td>{{ $categoria->description }}</td>
+                           
                             <td>
                                 @if($categoria->status==1)
                                 <label style="color: green;">Activo</label>
@@ -111,4 +115,6 @@
         </div>
     </div>
 </div>
+
+
 @stop

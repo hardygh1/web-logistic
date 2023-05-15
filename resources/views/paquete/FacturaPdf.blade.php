@@ -66,7 +66,7 @@
         <br>
         @endif
         
-        <center style="color: orange;">Final Details for Order #{{$datos->id}}</center>
+        <center style="color: orange;">Final Details for Order #{{$cabecera->id}}</center>
         <p><b>Order Placed:</b> {{$fecha}}</p>
         <p><b>Order Total:</b>${{$total_precio}}</p>
 
@@ -93,7 +93,7 @@
         <tr class="tabletr">
             <td>
                 Shipping Address:<br>
-                {{$datos->nombre}} {{$datos->apellido}}<br>
+                {{$cabecera->nombre}} {{$cabecera->apellido}}<br>
                 2131 NW 79th Ave<br>
                 MIAMI, FLORIDA, 33122-1615<br>
                 United States<br><br>
@@ -136,7 +136,7 @@
             <td style="text-align: right;"> Total before tax: ${{$total_precio}}</td>
         </tr>
         <tr>
-            <td>{{$datos->nombre}} {{$datos->apellido}}</td>
+            <td>{{$cabecera->nombre}} {{$cabecera->apellido}}</td>
             <td style="text-align: right;"> Estimated tax to be collected: $0.00</td>
         </tr>
         <tr>
