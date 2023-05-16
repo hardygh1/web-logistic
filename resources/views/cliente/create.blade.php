@@ -108,6 +108,32 @@
         var total = (id_provincia * 10000) + (id_canton * 100) + (id_distrito * 1);
         $('#codigo_postal').val(total);
     }
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var identificacionInput = document.querySelector('input[name="identificacion"]');
+        var url = identificacionInput.getAttribute('data-url');
+
+        identificacionInput.addEventListener('blur', function() {
+            var identificacion = identificacionInput.value;
+
+            fetch(url + '?identificacion=' + encodeURIComponent(identificacion))
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    if (data.valid) {
+                        identificacionInput.classList.remove('is-invalid');
+                    } else {
+                        identificacionInput.classList.add('is-invalid');
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Error en la solicitud Ajax:', error);
+                });
+        });
+    });
 </script>
 <!-- <script>
     $(document).ready(function() {

@@ -1,10 +1,20 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        <div class="form-group">
+
+        <!--<div class="form-group">
             {{ Form::label('identificacion') }}
             {{ Form::text('identificacion', $cliente->identificacion, ['class' => 'form-control' . ($errors->has('identificacion') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese su Identificacion', 'required']) }}
             {!! $errors->first('identificacion', '<div class="invalid-feedback">:message</div>') !!}
+        </div> -->
+
+        <div class="form-group">
+            {{ Form::label('identificacion') }}
+            {{ Form::text('identificacion', $cliente->identificacion, ['class' => 'form-control' . ($errors->has('identificacion') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese su Identificacion', 'required', 'data-url' => route('clientes.validar.identificacion', $cliente->id)]) }}
+            {!! $errors->first('identificacion', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
+
+
         <div class="row">
             <div class="form-group col-md-6">
                 {{ Form::label('nombre') }}

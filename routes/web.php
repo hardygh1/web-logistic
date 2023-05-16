@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/clientes', \App\Http\Controllers\ClienteController::class);
 
+    Route::get('/clientes/validar-identificacion', '\App\Http\Controllers\ClienteController@validarIdentificacion')->name('clientes.validar.identificacion');
+
+
     Route::resource('/paquetes', \App\Http\Controllers\PaqueteController::class);
 
     Route::resource('/proveedores', \App\Http\Controllers\ProveedoreController::class);

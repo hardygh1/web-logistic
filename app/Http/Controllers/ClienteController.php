@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Pais;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
 
@@ -91,8 +92,20 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        $identificacion = $request->input('identificacion');
 
-        request()->validate(Cliente::$rules);
+        // Verificar si ya existe un cliente con la misma identificación
+        $existeCliente = Cliente::where('identificacion', $identificacion)->exists();
+
+        if ($existeCliente) {
+            // Mostrar error o realizar alguna acción adecuada
+            return redirect()->back()->withErrors(['identificacion' => 'La identificación ya está en uso']);
+        }
+
+        $request->validate([
+            'identificacion' => 'required',
+            // ... otras reglas de validación para los demás campos ...
+        ]);
 
         $cliente = Cliente::create($request->all());
 
@@ -172,5 +185,18 @@ class ClienteController extends Controller
 
         return redirect()->route('clientes.index')
             ->with('success', 'Cliente deleted successfully');
+    }
+
+
+    public function validarIdentificacion(Request $request)
+    {
+        $validatedData = $request->validate([
+            'identificacion' => [
+                'required',
+                Rule::unique('clientes')->ignore($request->cliente_id),
+            ],
+        ]);
+
+        return response()->json(['valid' => true]);
     }
 }
