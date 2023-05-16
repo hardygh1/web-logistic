@@ -4,7 +4,7 @@
 
             @includeif('partials.errors')
 
-            <input  type="hidden" name="status" value="1" >
+            <input  type="hidden" name="estado" value="Activo" >
             @include('proveedore.form')
         </div>
     </div>

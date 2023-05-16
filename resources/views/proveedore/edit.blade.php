@@ -30,13 +30,16 @@
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('proveedores.update', $proveedore->id) }}"  role="form" enctype="multipart/form-data">
+
+                            <input type="hidden" name="estado" value="Activo">
+
                             {{ method_field('PATCH') }}
                             @csrf
 
                             @include('proveedore.form')
+                            <button type="submit" class="btn btn-block btn-success">{{ __('ACTUALIZAR') }}</button>
 
                         </form>
-                        <button type="submit" class="btn btn-block btn-success">{{ __('ACTUALIZAR') }}</button>
 
                     </div>
                 </div>

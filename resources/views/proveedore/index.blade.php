@@ -108,7 +108,7 @@
 
                             <td>
                                 <form action="{{ route('proveedores.destroy',$proveedore->id) }}" method="POST">
-                                    <a class="btn btn-sm btn-success" href="{{ route('proveedores.edit',$proveedore->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                    <a class="btn btn-sm btn-warning" href="{{ route('proveedores.edit',$proveedore->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
 
                                     @csrf
                                     @method('DELETE')

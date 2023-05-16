@@ -55,7 +55,7 @@ class ProveedoreController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Proveedore::$rules);
+
 
         $validator = Validator::make(
             $request->all(),
@@ -73,7 +73,7 @@ class ProveedoreController extends Controller
             $text = 'Debe de ingresar todos los campos requeridos';
         } else {
             $proveedore = Proveedore::create($request->all());
-            if ($proveedore->status) {
+            if ($proveedore->estado) {
                 $message = 'success';
                 $text = 'Se guardó exitosamente';
             } else {

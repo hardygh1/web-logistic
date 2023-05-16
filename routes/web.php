@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -28,32 +28,8 @@ Route::middleware('auth')->group(function () {
         return 'new page';
     });
 
-    Route::get('/events', function () {
-
-        //Obtener los eventos de la BD
-        $events = Event::all();
-
-        //ASignar la cabecera la muestra datatable
-        $heads = [
-            'ID',
-            'Nombre',
-            'Descripcion',
-            'Estado',
-            'Tipo',
-            'Fecha'
-        ];
-
-        //Retornamos la vida con la vida de parametros
-        return view('events', compact('events', 'heads'));
-    });
-
-    Route::get('/events/create', function () {
-        return view('events-create');
-    });
-
     Route::resource('/clientes', \App\Http\Controllers\ClienteController::class);
-    
-  
+
     Route::resource('/paquetes', \App\Http\Controllers\PaqueteController::class);
 
     Route::resource('/proveedores', \App\Http\Controllers\ProveedoreController::class);
@@ -66,4 +42,3 @@ Route::middleware('auth')->group(function () {
 });
 
 
-    
