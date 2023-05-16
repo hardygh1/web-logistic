@@ -21,6 +21,7 @@ class Proveedore extends Model
 
     static $rules = [
 		'nombre' => 'required',
+        'estado' => 'required',
     ];
 
     protected $perPage = 20;

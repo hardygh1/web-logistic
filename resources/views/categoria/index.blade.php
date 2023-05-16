@@ -24,6 +24,7 @@
             </div>
         </div>
         <div class="card-body">
+
             <section class="content container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -41,6 +42,7 @@
                     </div>
                 </div>
             </section>
+
         </div>
     </div>
 </div>
@@ -60,11 +62,14 @@
 
                         <div class="float-right">
                             <!-- <button type="button" class="btn btn-sm btn-success" data-toggle="modal" id="modalCreateCategoria" data-target="#modalCreateCategoria"><i class="fa fa-sm fa-plus"></i>&nbsp; {{ __('Agregar Categoría') }}</button> -->
+
+
                             <button type="button" onclick="$('.details').slideToggle(function(){$('#modalCreateCategoria').html($('.details').is(':visible')?'Cerrar':'Agregar Categoría');});" class="btn btn-sm btn-success" id="modalCreateCategoria"><i class="fa fa-sm fa-plus"></i>&nbsp; {{ __('Agregar Categoría') }}</button>
 
                         </div>
                     </div>
                 </div>
+
                 @if ($message = Session::get('success'))
                 <div class="alert alert-success">
                     <p>{{ $message }}</p>
@@ -89,7 +94,7 @@
 
                             <td>{{++$i}}</td>
                             <td>{{ $categoria->name }}</td>
-                           
+
                             <td>
                                 @if($categoria->status==1)
                                 <label style="color: green;">Activo</label>
@@ -109,6 +114,8 @@
                         </tr>
                         @endforeach
                     </x-adminlte-datatable>
+
+
                 </div>
             </div>
             {!! $categorias->links() !!}

@@ -335,10 +335,6 @@ return [
                     'url' => 'proveedores'
                 ],
                 [
-                    'text' => 'Registro Proveedores',
-                    'url' => '/proveedores/create'
-                ],
-                [
                     'text' => 'Categorías',
                     'url' => 'categorias'
                 ],

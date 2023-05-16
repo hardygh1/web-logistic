@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('template_title')
-    {{ __('Update') }} Proveedore
+    {{ __('Update') }} Proveedor
 @endsection
 
 @section('content')
@@ -13,8 +13,21 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Proveedore</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="card-title">
+                                <b>{{ __('Actualizar') }} Proveedores</b>
+                            </span>
+
+                            <div class="float-right">
+                                <a class="btn btn-sm btn-primary" href="{{ route('proveedores.index') }}"> {{ __('Regresar') }}</a>
+                            </div>
+
+                        </div>
+
+
+
                     </div>
+
                     <div class="card-body">
                         <form method="POST" action="{{ route('proveedores.update', $proveedore->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
@@ -23,6 +36,8 @@
                             @include('proveedore.form')
 
                         </form>
+                        <button type="submit" class="btn btn-block btn-success">{{ __('ACTUALIZAR') }}</button>
+
                     </div>
                 </div>
             </div>

@@ -102,6 +102,8 @@
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Aceptar') }}</button>
+        <a type="button"  href="{{ route('clientes.index') }}"  class="btn btn-danger">{{ __('CERRAR') }}</a>
+
+        <button type="submit" class="btn btn-success">{{ __('GUARDAR') }}</button>
     </div>
 </div>

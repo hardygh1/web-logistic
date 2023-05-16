@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proveedore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class ProveedoreController
@@ -18,9 +19,20 @@ class ProveedoreController extends Controller
      */
     public function index()
     {
-        $proveedores = Proveedore::paginate();
 
-        return view('proveedore.index', compact('proveedores'))
+        $heads = [
+
+            ['label' => '#', 'width' => 2],
+            ['label' => 'Nombre', 'width' => 70],
+            // ['label' => 'Descripción', 'width' => 50],
+            ['label' => 'Estado', 'width' => 5],
+            ['label' => 'Acción', 'no-export' => true, 'width' => 25],
+        ];
+
+        $proveedores = Proveedore::paginate();
+        $proveedore = new Proveedore();
+
+        return view('proveedore.index', compact('proveedores','heads','proveedore'))
             ->with('i', (request()->input('page', 1) - 1) * $proveedores->perPage());
     }
 
@@ -45,10 +57,34 @@ class ProveedoreController extends Controller
     {
         request()->validate(Proveedore::$rules);
 
-        $proveedore = Proveedore::create($request->all());
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'nombre' => 'required',
+                // 'description' => 'required',
+            ],
+            [
+                'nombre.required' => 'El atributo nombre se requiere.',
+                // 'description.required' => 'El atributo descripción se requiere.',
+            ]
+        );
+        if ($validator->fails()) {
+            $message = 'warning';
+            $text = 'Debe de ingresar todos los campos requeridos';
+        } else {
+            $proveedore = Proveedore::create($request->all());
+            if ($proveedore->status) {
+                $message = 'success';
+                $text = 'Se guardó exitosamente';
+            } else {
+                $message = 'danger';
+                $text = 'No se pudo guardar. Revise su conexión';
+            }
+        }
+
 
         return redirect()->route('proveedores.index')
-            ->with('success', 'Proveedore created successfully.');
+            ->with($message, $text);
     }
 
     /**

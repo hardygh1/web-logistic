@@ -15,7 +15,7 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">{{ __('Update') }} Cliente</span>
+                    <span class="card-title">{{ __('Editar') }} Cliente</span>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('clientes.update', $cliente->id) }}" role="form" enctype="multipart/form-data">
@@ -54,7 +54,7 @@
                 option.text = data[i];
                 option.value = i;
                 if (canton == i) {
-                    
+
                     option.selected = true
                     calcular_codigo_postal_sin_id();
 
@@ -74,7 +74,7 @@
             url: 'https://ubicaciones.paginasweb.cr/provincia/' + id_provincia + '/canton/' + canton + '/distritos.json',
             method: 'GET'
         }).then(function(data) {
-           
+
             var id_distrito = document.getElementById("id_distrito");
             var option = document.createElement("option");
             option.text = "Seleccione Distrito...";
@@ -85,7 +85,7 @@
                 option.text = data[i];
                 option.value = i;
                 if (distrito == i) {
-                  
+
                     option.selected = true
                     calcular_codigo_postal_sin_id();
 

@@ -1,5 +1,6 @@
 <div class="form-group row">
-    <label class="col-sm-12" for="name"> {{ Form::label('Nombre') }}
+    <label class="col-sm-12" for="name">
+        {{ Form::label('Nombre') }}
         {{ Form::text('name', $categoria->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese el nombre de la categoría']) }}
         {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
     </label>

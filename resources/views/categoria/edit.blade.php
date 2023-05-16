@@ -16,7 +16,7 @@
                     <div style="display: flex; justify-content: space-between; align-items: center;">
 
                         <span id="card_title" class="m-0 text-uppercase">
-                            <b> {{ __('Actualizar') }} Categoía</b>
+                            <b> {{ __('Actualizar') }} Categoría</b>
                         </span>
 
                         <div class="float-right">
@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('categorias.update', $categoria->id) }}" role="form" enctype="multipart/form-data">
                         <input type="hidden" name="status" value="1">
-                       
+
                         {{ method_field('PATCH') }}
                         @csrf
 
