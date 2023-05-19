@@ -75,8 +75,8 @@
                         <td> {{$articulo->peso}} {{$articulo->abreviatura}}</td>
                         <td> {{$articulo->largo}} {{$articulo->abreviatura}} x {{$articulo->ancho}} {{$articulo->abreviatura}} x {{$articulo->alto}} {{$articulo->abreviatura}}</td>
 
-                        <td> {{$articulo->volumen_kilo}}</td>
-                        <td> {{$articulo->pies_cubicos}}</td>
+                        <td> {{$articulo->volumen_kilo}}  kg</td>
+                        <td> {{$articulo->pies_cubicos}}  cuft</td>
                         <td>
                             <form action="{{ route('articulos.destroy',$articulo->id) }}" method="POST">
                                 @csrf
@@ -112,7 +112,7 @@
         $('#cantidad').val(cantidad);
         $('#precio').val(precio);
 
-        $('#tracking').val(tracking); 
+        $('#tracking').val(tracking);
 
     };
 
@@ -136,14 +136,14 @@
     }
 
     opcionDiv = function(opcion) {
-        
+
         var el = document.getElementById("div-element");
         el.textContent = opcion=='GUARDAR' ? 'AGREGAR ARTÍCULO': opcion+' ARTÍCULO';
         var bt = document.getElementById("text-element");
         bt.textContent = opcion;
 
         if (opcion == 'GUARDAR') {
-           
+
             $('#id').val(null);
             // $('#id_codigo_categoria').val(null);
             $('#peso').val(null);

@@ -81,7 +81,7 @@ class ArticuloController extends Controller
             $text = 'Debe de ingresar todos los campos requeridos';
         } else {
             // if($request->id_tipo_peso==1){
-            //     $request['peso'] = $request['peso']/2.205; 
+            //     $request['peso'] = $request['peso']/2.205;
             //     $request['id_tipo_peso'] = 2;
             // }
             $v = 1;
